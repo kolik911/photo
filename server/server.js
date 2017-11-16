@@ -10,6 +10,9 @@ import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
 import api from './routes';
+import photos from './photos'; 
+import album from './album';
+import fileUpload from 'express-fileupload';
 
 require('dotenv').config();
 
@@ -21,6 +24,8 @@ const ogImage = process.env.OG_IMAGE;
 const title = process.env.TITLE;
 const app = express();
 
+app.use(fileUpload());
+ 
 // require config setting
 if (!port) {
     console.error('please rename config file and then edit the file. (.envcpy to .env)');
@@ -42,8 +47,10 @@ if (isDev) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api', api);
+app.use('/photos', photos); 
+app.use('/album', album);
 app.use('/', express.static(path.join(__dirname, '..', 'public')));
-app.get('*', (req, res) => {
+app.get('*', (req, res) => { 
     let context = {};
     let html = ReactDOMServer.renderToString(
         <StaticRouter
