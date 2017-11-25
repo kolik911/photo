@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateAlbum from '../CreateAlbum/CreateAlbum';
+import CreateAlbum from '../Common/CreateAlbum';
 
 function Form() {
   return (

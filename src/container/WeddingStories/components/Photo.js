@@ -13,11 +13,11 @@ class Photo extends React.Component {
   }
 
   render() {
-    const { path, _id } = this.props.image;
+    const { path } = this.props.image;
     return (
       <div className="item">
         <label>
-          <input type='checkbox' id={_id} name='photos' onChange={this.handleCheck} />
+          <input type='checkbox' name='photos' onChange={this.handleCheck} />
           <img src={path} />
         </label>
       </div>

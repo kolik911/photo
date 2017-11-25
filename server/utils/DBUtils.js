@@ -8,6 +8,8 @@ const Registration = mongoose.model('Registration');
 const Image = mongoose.model('Image');
 const Album = mongoose.model('Album');
 
+//Create & Add user to db
+
 export function setUpConnection() {
   mongoose.connect('mongodb://localhost/photo');
 }
@@ -52,6 +54,8 @@ export function createUser(data) {
   return registrationUser.save();
 }
 
+//Crete & Add Img to db
+
 export function createImg(data) {
   const image = new Image({
     name: data.name,
@@ -66,6 +70,7 @@ export function listImg(albumId) {
   return Image.find({ albumId });
 }
 
+//Album
 
 export function createAlbum(data) {
   const album = new Album({
@@ -78,6 +83,8 @@ export function createAlbum(data) {
 export function listAlbums() {
   return Album.find({});
 }
+
+//AddImgToAlbum
 
 export function addImgToAlbum(albumId, imgIds) {
   return Image.update(

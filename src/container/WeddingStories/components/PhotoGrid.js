@@ -14,7 +14,7 @@ class PhotoGrid extends React.Component {
     };
   }
 
-  handleSelectAlbum = (id) => {
+  handleSelectAlbum = (id) => { 
     fetch('/photos/' + id)
       .then(d => d.json())
       .then(d =>
@@ -40,15 +40,10 @@ class PhotoGrid extends React.Component {
   handleAddToAlbum = (id) => {
     this.setState({
       addToAlbum: id
-    })
+    });
   }
 
   handleAddPhotoToAlbum = () => {
-    // const payload = {
-    //   albumId: this.state.addToAlbum,
-    //   imgIds: this.state.selectedPhotos
-    // };
-
     const data = new FormData();
     data.append("albumId", this.state.addToAlbum);
     data.append("imgIds", JSON.stringify(this.state.selectedPhotos));
@@ -90,17 +85,14 @@ class PhotoGrid extends React.Component {
 
 
   render() {
-    const { photos, selectedPhotos, addToAlbum } = this.state;
-    console.log(this.state);
+    const { photos, selectedPhotos, addToAlbum, albums } = this.state;
     return (
       <div>
-        Filter: <Select data={this.state.albums} onChange={this.handleSelectAlbum} />
-        {selectedPhotos.length ? <span>Add selected photo to: <Select data={this.state.albums} onChange={this.handleAddToAlbum} /></span> : ''}
+        Filter: <Select data={albums} onChange={this.handleSelectAlbum} />     
+        {selectedPhotos.length ? <span>Add selected photo to: <Select data={albums} onChange={this.handleAddToAlbum} /></span> : ''}
         {addToAlbum && selectedPhotos.length ? <button onClick={this.handleAddPhotoToAlbum} >Send</button> : ''}
-        <div className="photos-container">
-          {
-            photos.map((item) => <Photo key={item._id} image={item} onSelect={this.handlePhotoSelect} />)
-          }
+        <div className="photos-container">       
+          {photos.map((item) => <Photo key={item._id} image={item} onSelect={this.handlePhotoSelect} />)}
         </div>
       </div>
     );

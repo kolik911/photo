@@ -1,50 +1,29 @@
-import React from 'react';
-import Slide from './Slide';
-import data from '../data.json';
+import React from 'react'; 
 
 class Slider extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      photos: []
+    }
   }
 
-  handleLeftNav = (e) => {
-    console.log (this)
+  componentDidMount() {
+    fetch('/photos/5a148543151c441b9b48324b')
+      .then(d => d.json())
+      .then(d =>
+        this.setState({
+          photos: d
+        })
+      );
   }
 
-  handleRightNav = (e) => {
-    console.log(this)
-  }
-
-
-
-  // renderSliders() {
-  //   return data.map(el => {
-  //     return (
-  //       <Slide
-  //         name={el.name}
-  //         key={el.abbreviation}
-  //       />
-  //     );
-  //   })
-  // }
-
-  render() { 
+  render() {
+    const { photos } = this.state;
     return (
-      <div className='carousel-continer'>
-        <button 
-          className="nav-left"
-          onClick={this.handleLeftNav}
-        >&#60;</button>
-
-        <div className='carousel-viewport'>
-          {/* {this.renderSliders()} */}
-        </div>
-
-        <button 
-          className='nav-right'
-          onClick={this.handleRightNav}
-        >&#62;</button>
+      <div>
+        Hello
       </div>
     );
   }

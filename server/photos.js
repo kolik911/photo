@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
   db.listImg().then(data => res.json(data));
 }); 
 
-router.get('/:id', (req,res) => {
+router.get('/:id', (req,res) => { 
   if (!req.params.id) return res.status(403).send(err);
   db.listImg(req.params.id).then(data => res.json(data));
 })

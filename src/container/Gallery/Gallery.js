@@ -1,10 +1,10 @@
 import React from 'react';
-import Slider from './components/Slider';
- 
+import Slider from './components/Slider'; 
+
 class Gallery extends React.Component {
     render() {
         return (
-            <div>
+            <div className='carousel'>
                 <h1>Gallery</h1>
                 <Slider />
             </div>
