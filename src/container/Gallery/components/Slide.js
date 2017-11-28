@@ -5,9 +5,7 @@ class Slide extends Component {
   render() {
     const { path } = this.props.image;
     return (
-      // <div>
-        <img src={path} />
-      // </div>
+      <img src={path} />
     );
   }
 }

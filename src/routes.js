@@ -5,7 +5,7 @@ import Switch from 'react-router-dom/Switch';
 import Link from 'react-router-dom/Link';
 import Gallery from './container/Gallery/Gallery';
 import WeddingStories from './container/WeddingStories/WeddingStories';
-import Albums from './container/Albums/Albums';
+import Albums from './container/Albums/AlbumsRender';
 import Contact from './container/Contact/Contact';
 import Feedback from './container/Feedback/Feedback';
 import Footer from './container/Footer/Footer';

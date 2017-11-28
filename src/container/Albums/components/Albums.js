@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import Album from './Album';
+
 
 class Albums extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      albums: []
+      albums: [],
+      photos: []
     }
+  }
+
+  handleGOToAlbum = (e) => {
+    console.log(e.target)
   }
 
   componentDidMount() {
@@ -17,16 +24,21 @@ class Albums extends Component {
           albums: d
         })
       );
+    fetch('/photos')
+      .then(d => d.json())
+      .then(d =>
+        this.setState({
+          photos: d
+        })
+      );
   }
 
   render() {
     const { albums } = this.state;
     return (
-      <div>
-        <ul className='albums-list'>
-          {albums.map(item => <li>{item.name}</li>)}
-        </ul>
-      </div>
+      <ul onClick={this.handleGOToAlbum}>
+        {albums.map(item => <li key={item._id}><Album data={item} /></li>)}
+      </ul>
     );
   }
 }

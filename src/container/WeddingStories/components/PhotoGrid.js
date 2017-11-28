@@ -14,7 +14,7 @@ class PhotoGrid extends React.Component {
     };
   }
 
-  handleSelectAlbum = (id) => { 
+  handleSelectAlbum = (id) => {
     fetch('/photos/' + id)
       .then(d => d.json())
       .then(d =>
@@ -57,7 +57,7 @@ class PhotoGrid extends React.Component {
         this.setState(prevState => ({
           selectedPhotos: [],
           addToAlbum: '',
-          photos: prevState.photos.map(e => Object.assign({},e))
+          photos: prevState.photos.map(e => Object.assign({}, e))
         }))
       );
   }
@@ -88,11 +88,11 @@ class PhotoGrid extends React.Component {
     const { photos, selectedPhotos, addToAlbum, albums } = this.state;
     return (
       <div>
-        Filter: <Select data={albums} onChange={this.handleSelectAlbum} />     
+        Filter: <Select data={albums} onChange={this.handleSelectAlbum} />
         {selectedPhotos.length ? <span>Add selected photo to: <Select data={albums} onChange={this.handleAddToAlbum} /></span> : ''}
         {addToAlbum && selectedPhotos.length ? <button onClick={this.handleAddPhotoToAlbum} >Send</button> : ''}
-        <div className="photos-container">       
-          {photos.map((item) => <Photo key={item._id} image={item} onSelect={this.handlePhotoSelect} />)}
+        <div className="photos-container">
+          {photos.map(item => <Photo key={item._id} image={item} onSelect={this.handlePhotoSelect} />)}
         </div>
       </div>
     );

@@ -1,8 +1,11 @@
 @import '_constant.less';
 @import '_reset.less';
-// @import 'social-footer.less';
-// @import 'gallery.less';
-// @import 'wedding-stories.less'; 
+@import 'social-footer.less';
+@import 'gallery.less';
+@import 'wedding-stories.less'; 
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 
 body {
     font-family: 'APPLESDGothicNEO-LIGHT', sans-serif;
@@ -22,30 +25,34 @@ a {
     }
 }
 
-// .nav{
-//     text-align: center; 
-//     text-transform: uppercase;
-//     li{
-//         display: inline-block;
-//         padding: 15px; 
-//         a{
-//             display: block;
-//             font-size: 13px;
-//             color: rgb(114, 114, 114);
-//             &:hover{
-//                 color: #bdbdbd;
-//             }
-//         }
-//     }
-// }
+.nav{
+    text-align: center; 
+    text-transform: uppercase;
+    li{
+        display: inline-block;
+        padding: 15px; 
+        a{
+            display: block;
+            font-size: 13px;
+            color: rgb(114, 114, 114);
+            &:hover{
+                color: #bdbdbd;
+            }
+        }
+    }
+}
 
 
-// .albums-list{
-//     li{
-//         display: inline-block;
-//         width: 150px;
-//         height: 150px;
-//         background: red;
-//         margin: 0 10px;
-//     }
-// }
+.albums-list{
+    ul{
+        li{
+            display: inline-block;
+            margin: 0 20px 0 0;
+            .album{
+                img{
+                    width: 150px;
+                }
+            }
+        }
+    }    
+}

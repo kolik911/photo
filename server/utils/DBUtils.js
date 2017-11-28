@@ -74,7 +74,8 @@ export function listImg(albumId) {
 
 export function createAlbum(data) {
   const album = new Album({
-    name: data.createAlbum
+    name: data.createAlbum,
+    image: '/album.png'
   })
 
   return album.save();
@@ -90,6 +91,16 @@ export function addImgToAlbum(albumId, imgIds) {
   return Image.update(
     { _id: { $in: JSON.parse(imgIds) } },
     { $set: { albumId } },
-    { multi: true }
+    { multi: true },
   )
+    .then(() => {
+      return Image.findOne({ _id: JSON.parse(imgIds)[0] })
+    })
+    .then((image) => {
+      console.log(image)
+      return Album.update(
+        { _id: albumId },
+        { $set: { image: image.path } }
+      )
+    })
 }
