@@ -5,9 +5,9 @@ class MyContacts extends React.Component {
     return (
       <div>
         <ul>
-          <li>Phone: test</li>
-          <li>Email: test@gmail.com</li>
-          <li>Address: test</li>
+          <li>Phone: +38 (067) 67 67 677</li>
+          <li>Email: <a href="mailto:webmaster@example.com">Bogya Biluk</a></li>
+          <li>Address: Sambir,I.Franko str.</li>
         </ul>
       </div>
     );

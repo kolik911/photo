@@ -8,7 +8,7 @@ import WeddingStories from './container/WeddingStories/WeddingStories';
 import Albums from './container/Albums/AlbumsRender';
 import Contact from './container/Contact/Contact';
 import Feedback from './container/Feedback/Feedback';
-import Footer from './container/Footer/Footer';
+import Footer from './container/Footer/Footer'; 
 
 export default (
     <div>
@@ -28,7 +28,7 @@ export default (
         <Route path="/albums" component={Albums} />
         <Route path="/contact" component={Contact} />
         <Route path="/feedback" component={Feedback} />
-        <Route path="/wedding-stories" component={WeddingStories} />
+        <Route path="/wedding-stories" component={WeddingStories} /> 
         <Switch>
             <Redirect from="/home" to="/" />
         </Switch>
