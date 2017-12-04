@@ -4,11 +4,13 @@ import Redirect from 'react-router-dom/Redirect';
 import Switch from 'react-router-dom/Switch';
 import Link from 'react-router-dom/Link';
 import Gallery from './container/Gallery/Gallery';
+import ControlPanel from './container/ControlPanel/ControlPanel';
 import WeddingStories from './container/WeddingStories/WeddingStories';
-import Albums from './container/Albums/AlbumsRender';
 import Contact from './container/Contact/Contact';
 import Feedback from './container/Feedback/Feedback';
+import Admin from './container/Common/Admin';
 import Footer from './container/Footer/Footer'; 
+
 
 export default (
     <div>
@@ -19,16 +21,18 @@ export default (
         </div>
         <ul className='nav'>
             <li><Link to="/">Gallery</Link></li>
-            <li><Link to="/albums">Albums</Link></li>
+            <li><Link to="/wedding-stories">Wedding Stories</Link></li>
             <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/feedback">Feedback</Link></li>
-            <li><Link to="/wedding-stories">Wedding Stories</Link></li> 
+            <li><Link to="/control-panel">Control Panel</Link></li> 
+            <li><Link to="/admin">Admin</Link></li> 
         </ul>
         <Route exact path="/" component={Gallery} />
-        <Route path="/albums" component={Albums} />
+        <Route path="/wedding-stories" component={WeddingStories} />
         <Route path="/contact" component={Contact} />
         <Route path="/feedback" component={Feedback} />
-        <Route path="/wedding-stories" component={WeddingStories} /> 
+        <Route path="/control-panel" component={ControlPanel} /> 
+        <Route path="/admin" component={Admin} /> 
         <Switch>
             <Redirect from="/home" to="/" />
         </Switch>

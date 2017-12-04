@@ -12,6 +12,7 @@ import webpackDevServer from 'webpack-dev-server';
 import api from './routes';
 import photos from './photos'; 
 import album from './album';
+import send from './send';
 import fileUpload from 'express-fileupload';
 
 require('dotenv').config();
@@ -49,6 +50,7 @@ app.use(bodyParser.json());
 app.use('/api', api);
 app.use('/photos', photos); 
 app.use('/album', album);
+app.use('/send', send);
 app.use('/', express.static(path.join(__dirname, '..', 'public')));
 app.get('*', (req, res) => { 
     let context = {};

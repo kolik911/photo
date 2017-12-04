@@ -5,13 +5,15 @@ import * as db from './utils/DBUtils.js';
 db.setUpConnection();
 const router = express.Router();
 
-router.post('/authenicate', db.authenticate);
- 
+
 router.post('/registration', (req, res) => {
     db.createUser(req.body).then(data => res.send(data))
 });
 
- 
+
+router.post('/authenicate', db.authenticate);
+
+
 router.use(function (req, res, next) {
 
     const token = req.body.token || req.query.token || req.headers['token'];

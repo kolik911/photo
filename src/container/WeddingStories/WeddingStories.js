@@ -1,16 +1,14 @@
-import React from 'react';
-import PhotoGrid from './components/PhotoGrid';
+import React, { Component } from 'react';
+import AlbumsGrid from './components/AlbumsGrid'; 
 
-
-class WeddingStories extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>WeddingStories</h1>
-                <PhotoGrid />
-            </div>
-        );
-    }
+class WeddingStories extends Component {
+  render() {
+    return (
+      <div className="albums-list">
+        <AlbumsGrid />
+      </div>
+    );
+  }
 }
 
 export default WeddingStories;

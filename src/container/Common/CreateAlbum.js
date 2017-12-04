@@ -1,20 +1,12 @@
-import React, {Component} from 'react'; 
- 
-function Create() {
-  return (
-    <form method="post" action="http://localhost:3000/album" encType="multipart/form-data" id='createAlbum'>
-      <input type="text" name="createAlbum" placeholder="Title new album"/>
-      <input type="submit" />
-    </form>
-  );
-}
+import React, { Component } from 'react';
 
 class CreateAlbum extends Component {
   render() {
     return (
-      <div>
-        <Create />
-      </div>
+      <form method="post" action="http://localhost:3000/album" encType="multipart/form-data" className="create-album" id='createAlbum'>
+        <input type="text" name="createAlbum" placeholder="Title new album" />
+        <input type="submit" />
+      </form>
     );
   }
 }

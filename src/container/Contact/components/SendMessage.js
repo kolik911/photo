@@ -4,14 +4,14 @@ class SendMessage extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          <input type="text" placeholder="Name"/>
+        <form method='post' action='/send'> 
+          <input type="text" placeholder="Name" name='name'/>
           <br/>
-          <input type="text" placeholder="Email"/>
+          <input type="email" placeholder="Email" name='email'/>
           <br/>
-          <input type="text" placeholder="Phone"/>
+          <input type="text" placeholder="Phone" name='phone'/>
           <br/>
-          <textarea placeholder="Text message"></textarea>
+          <textarea placeholder="Text message" name='text'></textarea>
           <br/>
           <input type="submit" value="Send"/>
         </form>   
