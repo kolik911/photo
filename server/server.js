@@ -1,7 +1,7 @@
 import './hook';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router'; 
+import { StaticRouter } from 'react-router';
 import routes from '../src/routes';
 import path from 'path';
 import morgan from 'morgan';
@@ -10,10 +10,10 @@ import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import webpackDevServer from 'webpack-dev-server';
 import api from './routes';
-import photos from './photos'; 
+import photos from './photos';
 import album from './album';
 import send from './send';
-import fileUpload from 'express-fileupload';
+import fileUpload from 'express-fileupload'; 
 
 require('dotenv').config();
 
@@ -26,7 +26,7 @@ const title = process.env.TITLE;
 const app = express();
 
 app.use(fileUpload());
- 
+
 // require config setting
 if (!port) {
     console.error('please rename config file and then edit the file. (.envcpy to .env)');
@@ -48,11 +48,11 @@ if (isDev) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api', api);
-app.use('/photos', photos); 
+app.use('/photos', photos);
 app.use('/album', album);
 app.use('/send', send);
 app.use('/', express.static(path.join(__dirname, '..', 'public')));
-app.get('*', (req, res) => { 
+app.get('*', (req, res) => {
     let context = {};
     let html = ReactDOMServer.renderToString(
         <StaticRouter

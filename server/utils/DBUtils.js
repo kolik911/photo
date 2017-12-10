@@ -23,16 +23,20 @@ export function authenticate(req, res) {
     username: req.body.username
   }, (err, user) => {
     if (err) throw err;
-
+    
     if (!user) {
       res.status(401).json({ success: false, message: 'Authentication failed. User not found.' });
     } else {
-
       user.comparePassword(req.body.password, (err, isMatch) => {
 
-        if (isMatch && !err) {
+        const userForToken = {
+          user : user.username, 
+          id : user._id
+        }
 
-          const token = jwt.sign(user, process.env.SECRET_KEY);
+        if (isMatch && !err) { 
+
+          const token = jwt.sign( userForToken , process.env.SECRET_KEY);
 
           res.status(200).json({ success: true, token: token });
 
@@ -54,7 +58,7 @@ export function createUser(data) {
   return registrationUser.save();
 }
 
-//Crete & Add Img to db
+//Crete & Add  & Delete Img to db
 
 export function createImg(data) {
   const image = new Image({
@@ -70,12 +74,17 @@ export function listImg(albumId) {
   return Image.find({ albumId });
 }
 
+export function deleteImg(req, res) {
+  Image.findByIdAndRemove(req.body.id).exec();
+  res.json("success: true");
+}
+
 //Album
 
 export function createAlbum(data) {
   const album = new Album({
     name: data.createAlbum,
-    image: '/album.png'
+    image: '/album.jpg'
   })
 
   return album.save();
@@ -83,6 +92,11 @@ export function createAlbum(data) {
 
 export function listAlbums() {
   return Album.find({});
+}
+
+export function deleteAlbum(req, res) {
+  Album.findByIdAndRemove(req.body.id).exec();
+  res.json("success: true" )
 }
 
 //AddImgToAlbum

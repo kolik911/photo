@@ -11,8 +11,12 @@ router.get('/list',(req,res) => {
   db.listAlbums().then(data => res.json(data));
 })
 
+router.post('/delete', db.deleteAlbum);
+
 router.post('/addPhotos', (req, res) => {
   db.addImgToAlbum(req.body.albumId, req.body.imgIds).then(data => res.json(data), err => console.log(err)); 
 })
+
+
 
 export default router;

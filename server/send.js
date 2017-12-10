@@ -25,7 +25,6 @@ router.post('/', (req, res) => {
 
 
   let mailOptions = {
-    from: '<foo@blurdybloop.com>',
     to: 'kolia.kachmaruk@gmail.com',
     subject: 'Node',
     text: 'Hello world?',

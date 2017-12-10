@@ -7,14 +7,14 @@ const router = express.Router();
 
 
 router.post('/registration', (req, res) => {
-    db.createUser(req.body).then(data => res.send(data))
+    db.createUser(req.body).then(data => res.send(data)) 
 });
 
 
 router.post('/authenicate', db.authenticate);
 
 
-router.use(function (req, res, next) {
+router.use((req, res, next) => {
 
     const token = req.body.token || req.query.token || req.headers['token'];
 

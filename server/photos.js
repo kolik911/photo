@@ -37,9 +37,13 @@ router.get('/', (req, res) => {
   db.listImg().then(data => res.json(data));
 }); 
 
+
+
 router.get('/:id', (req,res) => { 
   if (!req.params.id) return res.status(403).send(err);
   db.listImg(req.params.id).then(data => res.json(data));
 })
+
+router.post('/delete',db.deleteImg);
 
 export default router;

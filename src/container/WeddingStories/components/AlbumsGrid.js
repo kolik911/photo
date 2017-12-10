@@ -14,8 +14,7 @@ class AlbumsGrid extends Component {
   }
 
   handleChooseAlbumById = (id) => {
-    const obj = id;
-    fetch('/photos/' + obj.id)
+    fetch('/photos/' + id)
       .then(d => d.json())
       .then(d =>
         this.setState({
@@ -37,15 +36,15 @@ class AlbumsGrid extends Component {
   render() {
     const { albums, photos } = this.state;
     return (
-      <div>
+      <div className='albums'>
         <Route exact={true} path="/wedding-stories" render={() => (
-          <ul>
-            {albums.map(item => <li key={item._id}><Link to={`/wedding-stories/${item._id}`}><Album data={item} click={this.handleChooseAlbumById} /></Link></li>)}
-          </ul>
+          <div className='row'>
+            {albums.map(item => <div className='col-md-4' key={item._id}><Link to={`/wedding-stories/${item._id}`}><Album data={item} click={this.handleChooseAlbumById} /></Link></div>)}
+          </div>
         )} />
         <Route path="/wedding-stories/:itemId" render={() => (
-          <div className="albums-grid">
-            {photos.map(item => <img key={item._id} src={item.path} />)}
+          <div>
+            {photos.map(item => <div key={item._id}> <img src={item.path} className='img-fluid' /></div> )}
           </div>
         )} />
       </div> 

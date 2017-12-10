@@ -1,10 +1,7 @@
 @import '_constant.less';
 @import '_reset.less';
-@import 'social-footer.less';
-@import 'gallery.less';
-@import 'wedding-stories.less'; 
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
+@import 'social-footer.less';  
+
 
 
 body {
@@ -25,7 +22,7 @@ a {
     }
 }
 
-.nav{
+.nav-menu{
     text-align: center; 
     text-transform: uppercase;
     li{
@@ -42,24 +39,3 @@ a {
     }
 }
 
-
-.albums-list{
-    ul{
-        li{
-            display: inline-block;
-            margin: 0 20px 0 0;
-            .album{
-                cursor: pointer;
-                img{
-                    width: 150px;
-                }
-            }
-        }
-    }    
-    .albums-grid{
-        flex-wrap: wrap;
-        img{
-            height: 300px;
-        }
-    }
-}

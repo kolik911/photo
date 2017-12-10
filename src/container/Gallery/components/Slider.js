@@ -2,25 +2,23 @@ import React from 'react';
 import Slide from './Slide';
 import Slick from 'react-slick';
 
-function SampleNextArrow(props) {
-  const {className, style, onClick} = props
+function LeftArrow(props) {
+  const { className, style, onClick } = props
   return (
     <div
-      className={className}
-      style={{...style, display: 'block', background: 'red'}}
+      className='arrow-btn-left'
       onClick={onClick}
-    ></div>
+    >&#60;</div>
   );
 }
 
-function SamplePrevArrow(props) {
-  const {className, style, onClick} = props
+function RightArrow(props) {
+  const { className, style, onClick } = props
   return (
     <div
-      className={className}
-      style={{...style, display: 'block', background: 'green'}}
+      className='arrow-btn-right'
       onClick={onClick}
-    ></div>
+    >&#62;</div>
   );
 }
 
@@ -34,7 +32,7 @@ class Slider extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/photos/5a1bb4d362deb413e617ee1c')
+    fetch('/photos/5a2ad877891f810aecfdddc0')
       .then(d => d.json())
       .then(d =>
         this.setState({
@@ -45,39 +43,13 @@ class Slider extends React.Component {
 
   render() {
     const { photos } = this.state;
-    const settings = {
-      dots: true,
+    const settings = { 
       infinite: true,
-      speed: 500,
+      speed: 900,
       slidesToShow: 1,
       slidesToScroll: 1,
-      nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ],
+      prevArrow: <LeftArrow />, 
+      nextArrow: <RightArrow />,
       variableWidth: true
     };
     return (

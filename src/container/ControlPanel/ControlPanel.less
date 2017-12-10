@@ -1,0 +1,37 @@
+.create-album, .add-photos{
+  margin: 0 25px 25px 0;
+  display: inline-block;
+}
+.create-album{
+  input[type=text]{
+    display: inline-block;
+    width: 69%;
+    vertical-align: top;
+  }
+  input[type=submit]{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+  }
+
+}
+
+.photos-container{
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  width: 100%;
+  .item{
+    margin: 15px;
+    img{
+      max-height: 300px;
+    }
+  }
+}
+
+.btn-close{
+  background: none;
+  width: 30px;
+  height: 30px;
+  background: url(../../_/img/bownload.png) no-repeat;
+}
