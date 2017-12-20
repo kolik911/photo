@@ -13,6 +13,7 @@ import api from './routes';
 import photos from './photos';
 import album from './album';
 import send from './send';
+import feedback from './feedback';
 import fileUpload from 'express-fileupload'; 
 
 require('dotenv').config();
@@ -51,6 +52,7 @@ app.use('/api', api);
 app.use('/photos', photos);
 app.use('/album', album);
 app.use('/send', send);
+app.use('/fb', feedback);
 app.use('/', express.static(path.join(__dirname, '..', 'public')));
 app.get('*', (req, res) => {
     let context = {};

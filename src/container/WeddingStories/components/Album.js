@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 class Album extends Component {
 
   handleGetId = (e) => {
-    this.props.click(e.target.id)
+    this.props.click({
+      id: this.props.data._id
+    })
   }
 
   render() {
-    const { image, name } = this.props.data;
+    const { image, name, _id } = this.props.data;
     return (
-      <div className="album"  onClick={this.handleGetId}>
+      <div className="album" id={_id} onClick={this.handleGetId}>
         <img className='img-fluid' src={image} />
-        <p>{name}</p> 
+        <p>{name}</p>
       </div>
     );
   }

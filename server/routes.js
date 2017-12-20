@@ -1,13 +1,13 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import * as db from './utils/DBUtils.js'; 
+import * as db from './utils/DBUtils.js';
 
 db.setUpConnection();
 const router = express.Router();
 
 
 router.post('/registration', (req, res) => {
-    db.createUser(req.body).then(data => res.send(data)) 
+    db.createUser(req.body).then(data => res.send(data))
 });
 
 
@@ -19,7 +19,7 @@ router.use((req, res, next) => {
     const token = req.body.token || req.query.token || req.headers['token'];
 
     if (token) {
-        
+
         jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
             if (err) {
                 return res.json({ success: false, message: 'Failed to authenticate token.' });
@@ -44,9 +44,26 @@ router.get('/list-users', (req, res) => {
     db.listUsers().then(data => res.send(data));
 });
 
+//Album
+
+router.post('/album', (req, res) => {
+    db.createAlbum(req.body).then(data => res.json(data));
+});
+
+router.post('/album/addPhotos', (req, res) => {
+    db.addImgToAlbum(req.body.albumId, req.body.imgIds).then(data => res.json(data), err => console.log(err));
+})
+
+
+router.post('/album/delete', db.deleteAlbum);
+
+//Img
+
+router.post('/photos/delete', db.deleteImg);
+
 export default router;
 
- 
+
 
 
 
@@ -78,9 +95,9 @@ export default router;
     //                 const payload = {
     //                     admin: user.admin
     //                 };
-    
+
     //                 var token = jwt.sign(payload, process.env.SECRET_KEY);
-    
+
     //                 res.json({
     //                     success: true,
     //                     message: 'Enjoy your token!',

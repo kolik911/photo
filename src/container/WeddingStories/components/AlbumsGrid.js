@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Album from './Album';
 import Route from 'react-router-dom/Route';
 import Link from 'react-router-dom/Link';
+import Masonry from 'react-masonry-component'; 
 
 class AlbumsGrid extends Component {
 
@@ -14,7 +15,8 @@ class AlbumsGrid extends Component {
   }
 
   handleChooseAlbumById = (id) => {
-    fetch('/photos/' + id)
+    const obj = id;
+    fetch('/photos/' + obj.id)
       .then(d => d.json())
       .then(d =>
         this.setState({
@@ -33,8 +35,14 @@ class AlbumsGrid extends Component {
       );
   }
 
+
   render() {
     const { albums, photos } = this.state;
+    const masonryOptions = {
+      itemSelector: '.Photo',
+      columnWidth: 540,
+      gutter: 20
+    }
     return (
       <div className='albums'>
         <Route exact={true} path="/wedding-stories" render={() => (
@@ -43,11 +51,15 @@ class AlbumsGrid extends Component {
           </div>
         )} />
         <Route path="/wedding-stories/:itemId" render={() => (
-          <div>
-            {photos.map(item => <div key={item._id}> <img src={item.path} className='img-fluid' /></div> )}
-          </div>
+          <Masonry
+            options={masonryOptions} 
+          >
+            {photos.map(item =>
+              <img src={item.path} key={item._id} className='Photo img-fluid' />
+            )}
+          </Masonry>
         )} />
-      </div> 
+      </div>
     );
   }
 }

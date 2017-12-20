@@ -2,6 +2,7 @@ import React from 'react';
 import Select from '../../Common/Selector';
 import Photo from './Photo';
 import DelAlbum from '../../Common/DelAlbum';
+// import { locale } from 'moment';
 
 class PhotoGrid extends React.Component {
 
@@ -26,24 +27,22 @@ class PhotoGrid extends React.Component {
       );
   }
 
-  handleDeleteById = (id) => {
-    const data = new FormData();
-    data.append("id", id);
-    fetch('/album/delete', {
-      method: 'POST',
-      body: data
-    })
-    document.getElementById(id).remove();
-  }
 
   handleDeleteImg = (id) => {
-    const data = new FormData();
-    data.append("id", id);
-    fetch('/photos/delete', {
-      method: 'POST',
-      body: data
-    })
-    document.getElementById(id).remove();
+    if (localStorage.key('token')) {
+      const data = new FormData();
+      data.append("id", id);
+      fetch('/api/photos/delete', {
+        method: 'POST',
+        body: data,
+        headers: {
+          'token': localStorage.getItem('token')
+        }
+      })
+      document.getElementById(id).remove();
+    } else {
+      alert('You must be logined')
+    }
   }
 
   handlePhotoSelect = (selectedPhoto) => {
@@ -65,22 +64,29 @@ class PhotoGrid extends React.Component {
   }
 
   handleAddPhotoToAlbum = () => {
-    const data = new FormData();
-    data.append("albumId", this.state.addToAlbum);
-    data.append("imgIds", JSON.stringify(this.state.selectedPhotos));
-    fetch('/album/addPhotos',
-      {
-        method: 'post',
-        body: data
-      })
-      .then(d => d.json())
-      .then(d =>
-        this.setState(prevState => ({
-          selectedPhotos: [],
-          addToAlbum: '',
-          photos: prevState.photos.map(e => Object.assign({}, e))
-        }))
-      );
+    if (localStorage.key('token')) {
+      const data = new FormData();
+      data.append("albumId", this.state.addToAlbum);
+      data.append("imgIds", JSON.stringify(this.state.selectedPhotos));
+      fetch('/api/album/addPhotos',
+        {
+          method: 'post',
+          body: data,
+          headers: {
+            'token': localStorage.getItem('token')
+          }
+        })
+        .then(d => d.json())
+        .then(d =>
+          this.setState(prevState => ({
+            selectedPhotos: [],
+            addToAlbum: '',
+            photos: prevState.photos.map(e => Object.assign({}, e))
+          }))
+        );
+    }else {
+      alert('You must be logined')
+    }
   }
 
   componentDidMount() {
@@ -104,28 +110,32 @@ class PhotoGrid extends React.Component {
       );
   }
 
+  handleLogOut = () => {
+    localStorage.removeItem('token');
+  }
 
   render() {
     const { photos, selectedPhotos, addToAlbum, albums } = this.state;
+    // const storage = localStorage.key('token');
     return (
       <div>
+        {/* {storage ? <button className='btn btn-primary logout' onClick={this.handleLogOut}>Log Out</button> : null} */}
         Filter: <Select data={albums} onChange={this.handleSelectAlbum} />
         {selectedPhotos.length ?
           <span>Add selected photo to:
             <Select data={albums} onChange={this.handleAddToAlbum} />
-          </span> : '' 
+          </span> : ''
         }
-        {addToAlbum && selectedPhotos.length ? <button onClick={this.handleAddPhotoToAlbum}>Send</button> : ''}
+        {addToAlbum && selectedPhotos.length ? <button className='btn btn-primary' onClick={this.handleAddPhotoToAlbum}>Send</button> : ''}
         <div className="photos-container">
           {photos.map(item =>
             <Photo
               key={item._id}
               image={item}
               onSelect={this.handlePhotoSelect}
-              deleteImg={this.handleDeleteImg}
+              deleteItem={this.handleDeleteImg}
             />)}
-        </div>
-        <DelAlbum data={albums} takeId={this.handleDeleteById} />
+        </div> 
       </div>
     );
   }

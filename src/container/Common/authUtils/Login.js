@@ -25,8 +25,7 @@ class Admin extends Component {
   // }
 
   handleLoginSubmit = (e) => {
-    e.preventDefault();
-    // console.log(e.targer)
+    e.preventDefault(); 
     fetch('/api/authenicate', {
       method: "POST",
       body: new FormData(e.target)
@@ -34,7 +33,11 @@ class Admin extends Component {
       .then(d => d.json())
       .then(d =>
         localStorage.setItem('token', d.token)
-      ) 
+      )
+      e.target.reset();
+    if (localStorage.key('token')) {
+      alert('You are logined');
+    }
   }
 
   handleListUsers = () => {
@@ -53,14 +56,14 @@ class Admin extends Component {
       <div>
         <form onSubmit={this.handleLoginSubmit}>
           <label>Login</label>
-          <br/>
-          <input type='text' className='form-control aaa'   name='username' placeholder='name' />
           <br />
-          <input type="password" className='form-control'   name='password' placeholder='password' />
+          <input type='text' className='form-control aaa' name='username' placeholder='name' />
           <br />
-          <button className='btn btn-default' type='submit'>Send</button>
+          <input type="password" className='form-control' name='password' placeholder='password' />
+          <br />
+          <button className='btn btn-primary' type='submit'>Send</button>
         </form>
-        <button type='button' onClick={this.handleListUsers}>aaa</button>
+        {/* <button type='button' onClick={this.handleListUsers}>aaa</button> */}
       </div>
     );
   }

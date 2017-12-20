@@ -23,8 +23,8 @@ export default (
         <ul className='nav-menu'>
             <li><Link to="/">Gallery</Link></li>
             <li><Link to="/wedding-stories">Wedding Stories</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/feedback">Feedback</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/control-panel">Control Panel</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/registration">Registration</Link></li>

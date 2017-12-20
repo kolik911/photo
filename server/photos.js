@@ -3,7 +3,7 @@ const router = express.Router();
 import * as db from './utils/DBUtils';
 
 
-db.setUpConnection();
+// db.setUpConnection();
 
 
 router.post('/', (req, res) => {
@@ -44,6 +44,8 @@ router.get('/:id', (req,res) => {
   db.listImg(req.params.id).then(data => res.json(data));
 })
 
+
 router.post('/delete',db.deleteImg);
+
 
 export default router;

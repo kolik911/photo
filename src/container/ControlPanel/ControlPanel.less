@@ -2,7 +2,7 @@
   margin: 0 25px 25px 0;
   display: inline-block;
 }
-.create-album{
+.create-album{ 
   input[type=text]{
     display: inline-block;
     width: 69%;
@@ -16,6 +16,12 @@
 
 }
 
+.add-photos{
+  input[type=file]{
+    width: 70%;
+  }
+}
+
 .photos-container{
   display: flex;
   overflow: hidden;
@@ -24,14 +30,49 @@
   .item{
     margin: 15px;
     img{
-      max-height: 300px;
+      max-height: 185px;
     }
   }
 }
 
-.btn-close{
-  background: none;
-  width: 30px;
-  height: 30px;
-  background: url(../../_/img/bownload.png) no-repeat;
+.item{
+  position: relative;
+  .btn-close{
+    cursor: pointer;  
+    border-radius: 15px;
+    position: absolute;
+    left: -17px;
+    top: -15px;
+    background: none;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: url('../../_/img/download.png') no-repeat;
+  }
+  label{
+    margin: 0 0 0 13px;
+    input[type='checkbox']{
+      display: none;
+    }
+  }
 }
+.checked{
+  border: solid 4px #000;
+  opacity: 0.6;
+}
+
+.del-button{
+  p{
+    display: inline-block;
+    width: 150px;
+  }
+  button{
+    display: inline-block;
+  }
+}
+
+ .logout{
+  position: absolute;
+  top: -175px;
+  left: 5px;
+ }

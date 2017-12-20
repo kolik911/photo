@@ -10,13 +10,14 @@ class DelAlbum extends Component {
   render() {
     const { data } = this.props;
     return (
-      <ul>
+      <ul className='del-button'>
         {data.map(e =>
-          <li key={e._id} id={e._id}>
-            {e.name}
+          <li key={e._id} id={e._id}> 
+            <p>{e.name}</p>
             <button
               type='submit'
               id={e._id}
+              className='btn btn-primary'
               onClick={this.handleId}>Delete</button>
           </li>
         )}

@@ -3,11 +3,12 @@ import jwt from 'jsonwebtoken';
 import '../models/Registration';
 import '../models/Image';
 import '../models/Album';
+import '../models/Feedback';
 
 const Registration = mongoose.model('Registration');
 const Image = mongoose.model('Image');
 const Album = mongoose.model('Album');
-
+const FeedBack = mongoose.model('FeedBack');
 //Create & Add user to db
 
 export function setUpConnection() {
@@ -118,3 +119,22 @@ export function addImgToAlbum(albumId, imgIds) {
       )
     })
 }
+
+// Feedback
+ 
+export function CreateFeedBack(file, desc) {
+  const feedBack = new FeedBack({
+    description: desc.description,
+    path: '/some/' + file.name
+  })
+  return feedBack.save();
+}
+
+export function listFeedBack() {
+  return FeedBack.find({});
+}
+
+// export function deleteResponse(req, res) {
+//   FeedBack.findByIdAndRemove(req.body.id).exec();
+//   res.json("success: true" )
+// }
