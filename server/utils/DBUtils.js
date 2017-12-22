@@ -134,7 +134,6 @@ export function listFeedBack() {
   return FeedBack.find({});
 }
 
-// export function deleteResponse(req, res) {
-//   FeedBack.findByIdAndRemove(req.body.id).exec();
-//   res.json("success: true" )
-// }
+export function deleteResponse(data) {
+  return FeedBack.findByIdAndRemove(data.id).exec();
+}

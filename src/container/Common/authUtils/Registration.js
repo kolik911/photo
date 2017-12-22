@@ -28,6 +28,7 @@ class Registration extends Component {
       method: 'POST',
       body: new FormData(e.target)
     })
+    e.target.reset();
   }
 
   render() {

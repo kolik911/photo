@@ -30,7 +30,7 @@ class Photo extends React.Component {
     const { path, _id } = this.props.image; 
     return (
       <div className="item" id={_id}>
-        <button id={_id} className='btn-close' onClick={this.delItem}><i className="close-icon"></i></button>
+        <button id={_id} className='btn-close' onClick={this.delItem}></button>
         <label>
           <input type='checkbox' name='photos' onChange={this.handleCheck} />
           <img src={path} onClick={this.click} className={this.state.active ? 'checked' : null}  />

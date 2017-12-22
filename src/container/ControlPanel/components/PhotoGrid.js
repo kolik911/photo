@@ -9,6 +9,7 @@ class PhotoGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isToken: false,
       photos: [],
       albums: [],
       addToAlbum: '',
@@ -84,7 +85,7 @@ class PhotoGrid extends React.Component {
             photos: prevState.photos.map(e => Object.assign({}, e))
           }))
         );
-    }else {
+    } else {
       alert('You must be logined')
     }
   }
@@ -108,18 +109,24 @@ class PhotoGrid extends React.Component {
           albums: d
         })
       );
+
+    if (localStorage.getItem('token')) {
+      this.setState({
+        isToken: true
+      })
+    }
   }
 
-  handleLogOut = () => {
+  handleLogOut = (id) => {
     localStorage.removeItem('token');
+    document.querySelector('.logout').remove();
   }
 
   render() {
-    const { photos, selectedPhotos, addToAlbum, albums } = this.state;
-    // const storage = localStorage.key('token');
+    const { photos, selectedPhotos, addToAlbum, albums, isToken } = this.state; 
     return (
       <div>
-        {/* {storage ? <button className='btn btn-primary logout' onClick={this.handleLogOut}>Log Out</button> : null} */}
+        {isToken ? <button className='btn btn-primary logout' onClick={this.handleLogOut}>Log Out</button> : null}
         Filter: <Select data={albums} onChange={this.handleSelectAlbum} />
         {selectedPhotos.length ?
           <span>Add selected photo to:
@@ -135,7 +142,7 @@ class PhotoGrid extends React.Component {
               onSelect={this.handlePhotoSelect}
               deleteItem={this.handleDeleteImg}
             />)}
-        </div> 
+        </div>
       </div>
     );
   }

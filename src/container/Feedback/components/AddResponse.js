@@ -5,10 +5,17 @@ class AddResponse extends Component {
   
 
   handleSubmit = (e) => {
-    fetch('/fb', {
-      method: 'POST',
-      body: new FormData(e.target)
-    })
+    if (localStorage.getItem('token')) {
+      fetch('/api/fb', {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: {
+          'token': localStorage.getItem('token')
+        }
+      })
+    }else {
+      alert('You must be logined');
+    }
   }
 
   

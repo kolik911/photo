@@ -3,16 +3,12 @@ import AddResponse from './components/AddResponse';
 import Response from './components/Response';
 import './FeedBack.less';
 
-
-// function fetchAoo() {
-//   return (
-//     <form>
-//       <input type='file' name='path' className='add-response-file' />
-//       <textarea name="description" className='form-control' rows="6" ></textarea>
-//       <br />
-//       <input type='submit' className='btn btn-primary' />
-//     </form>
-//   )
+// const checked = () => {
+//   const token = localStorage.getItem('token');
+//   if (!token) {
+//     return false;
+//   }
+//   return true;
 // }
 
 class Feedback extends React.Component {
@@ -20,6 +16,7 @@ class Feedback extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isToken: false,
       data: []
     }
   }
@@ -32,29 +29,39 @@ class Feedback extends React.Component {
           data: d
         })
       )
-    // if (localStorage.getItem('token')) {
-    //   fetchAoo()
-    // } else {
-    //   console.log('2');
-    // }
-  } 
+    if (localStorage.getItem('token')) {
+      const style = { display: 'block'};
+      this.setState({
+        isToken: true
+      }); 
+    }
+  }
 
   handleDeleteItem = (id) => {
-    // fetch('/fb/delete', {
-    //   method: 'POST',
-    //   body: id
-    // })
-    console.log(id)
-
+    if (localStorage.key('token')) {
+			const data = new FormData();
+			data.append("id", id);
+			fetch('/api/fb/delete', {
+				method: 'POST',
+				body: data,
+				headers: {
+					'token': localStorage.getItem('token')
+				}
+			})
+			document.getElementById(id).remove();
+		} else {
+			alert('You must be logined');
+    }
   }
 
   render() {
-    const { data } = this.state;
+    const { data, isToken } = this.state;
     // const a = window.localStorage.key('token');
     return (
       <div>
         {data.map(item => <Response key={item._id} data={item} delete={this.handleDeleteItem} />)}
         <br />
+        {isToken ? <AddResponse /> : null}
       </div>
     )
   }

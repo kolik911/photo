@@ -25,9 +25,9 @@ export default (
             <li><Link to="/wedding-stories">Wedding Stories</Link></li>
             <li><Link to="/feedback">Feedback</Link></li>
             <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/control-panel">Control Panel</Link></li>
+            {/* <li><Link to="/control-panel">Control Panel</Link></li>
             <li><Link to="/login">Login</Link></li>
-            <li><Link to="/registration">Registration</Link></li>
+            <li><Link to="/_/_/_/_/_/-/-/registration">Registration</Link></li> */}
         </ul>
         <Route exact path="/" component={Gallery} />
         <Route path="/wedding-stories" component={WeddingStories} />
@@ -35,7 +35,7 @@ export default (
         <Route path="/feedback" component={Feedback} />
         <Route path="/control-panel" component={ControlPanel} />
         <Route path="/login" component={Login} />
-        <Route path="/registration" component={Registration} />
+        <Route path="/_/_/_/_/_/-/-/registration" component={Registration} />
         <Switch>
             <Redirect from="/home" to="/" />
         </Switch>
